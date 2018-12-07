@@ -3,6 +3,7 @@ const fs = require('fs') // подключаем fs к файлу
 const bot = new Discord.Client()
 const config = require('./config.json')
 bot.commands = new Discord.Collection() // создаём коллекцию для команд
+const exp = require('./functions/exp.js')
 
 fs.readdir('./commands', (err, files) => { // чтение файлов в папке commands
     if (err) console.log(err)
@@ -26,9 +27,7 @@ bot.on('message', async message => {
     let command_file = bot.commands.get(command.slice(prefix.length)) // получение команды из коллекции
     if (command_file) command_file.run(bot, message, args)
 
-    if (message.content.startsWith(prefix + 'Hello')) {
-        message.channel.send('Hello!')
-    }
+    await exp(message.author)
 })
 
 bot.on('messageUpdate', async (oldmsg, newmsg) => {
