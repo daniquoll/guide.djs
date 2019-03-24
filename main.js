@@ -30,17 +30,17 @@ bot.on('message', async message => {
     await exp(message.author)
 })
 
-// bot.on('messageUpdate', async (oldmsg, newmsg) => {
-//     let embed = new Discord.RichEmbed()
-//         .setAuthor('Сообщение изменено', newmsg.guild.iconURL)
-//         .addField('Отправитель', oldmsg.member, true)
-//         .addField('Канал', oldmsg.channel, true)
-//         .addField('Раньше', oldmsg.content)
-//         .addField('Сейчас', newmsg.content)
-//         .setColor(0xe19517)
-//         .setTimestamp()
-//     await oldmsg.channel.send(embed)
-// })
+bot.on('messageUpdate', async (oldmsg, newmsg) => {
+	 let embed = new Discord.RichEmbed()
+		.setAuthor('Сообщение изменено', newmsg.guild.iconURL)
+		.addField('Отправитель', oldmsg.member, true)
+		.addField('Канал', oldmsg.channel, true)
+		.addField('Раньше', oldmsg.content)
+		.addField('Сейчас', newmsg.content)
+		.setColor(0xe19517)
+		.setTimestamp()
+	await oldmsg.channel.send(embed)
+})
 
 bot.on('messageDelete', async message => {
     let embed = new Discord.RichEmbed()
